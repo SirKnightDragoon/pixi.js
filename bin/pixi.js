@@ -24108,6 +24108,13 @@ InteractionManager.prototype.processInteractive = function (point, displayObject
         //Tests the hitArea
         displayObject.worldTransform.applyInverse(point,  this._tempPoint);
         if(!displayObject.hitArea.contains(this._tempPoint.x, this._tempPoint.y)) return false;
+        //Tests the mask
+        if(displayObject.mask){
+            if(!displayObject.mask.contains(this._tempPoint.x, this._tempPoint.y)) return false;
+        }
+    }else if(displayObject.mask){
+        //Tests the mask
+        if(!displayObject.mask.contains(this._tempPoint.x, this._tempPoint.y)) return false;
     }
 
     // ** FREE TIP **! If an object is not interacttive or has no buttons in it (such as a game scene!) set interactiveChildren to false for that displayObject.
