@@ -381,6 +381,7 @@ InteractionManager.prototype.processInteractive = function (point, displayObject
         }
     }else if(displayObject.mask){
         //Tests the mask
+        displayObject.worldTransform.applyInverse(point,  this._tempPoint);
         if(!displayObject.mask.contains(this._tempPoint.x, this._tempPoint.y)) return false;
     }
 
